@@ -448,6 +448,11 @@
     </repositories>
 
     <dependencies>
+    	<dependency>
+		    <groupId>org.mongodb</groupId>
+		    <artifactId>mongo-java-driver</artifactId>
+		    <version>3.11.0</version>
+		</dependency>
         <!-- Amazon AWS client libraries -->
         <dependency>
             <groupId>com.amazonaws</groupId>

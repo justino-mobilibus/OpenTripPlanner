@@ -20,6 +20,10 @@ public interface RoutePreferencesSource {
 	public static RoutePreferencesSource fromConfig(String type) {
 
 		switch (type) {
+		case "BlumenauSC":
+			return new BlumenauSCRoutePreferencesSource();
+		case "BeloHorizonteMG":
+			return new BeloHorizonteMGRoutePreferencesSource();
 		case "HSL":
 			return new HSLRoutePreferencesSource();
 		default:

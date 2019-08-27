@@ -959,9 +959,10 @@ public class PatternHopFactory {
                     }
                 }
                 if (j == lastStop + 1) {
-                    throw new RuntimeException(
-                            "Could not interpolate arrival/departure time on stop " + i
-                            + " (missing final stop time) on trip " + st0.getTrip());
+                    continue;
+                    // throw new RuntimeException(
+                    //         "Could not interpolate arrival/departure time on stop " + i
+                    //         + " (missing final stop time) on trip " + st0.getTrip());
                 }
                 numInterpStops = j - i;
                 int arrivalTime;

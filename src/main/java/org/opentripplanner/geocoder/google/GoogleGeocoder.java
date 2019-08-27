@@ -21,6 +21,10 @@ public class GoogleGeocoder implements Geocoder {
 	private static final Logger LOG = LoggerFactory.getLogger(GoogleGeocoder.class);
 	
 	private GoogleJsonDeserializer googleJsonDeserializer = new GoogleJsonDeserializer();
+	private String apiKey;
+
+	public String getApiKey() { return apiKey; }
+	public void setApiKey(String apiKey) { this.apiKey = apiKey; }
 
 	@Override
 	public GeocoderResults geocode(String address, Envelope bbox) {
@@ -73,6 +77,7 @@ public class GoogleGeocoder implements Geocoder {
 		UriBuilder uriBuilder = UriBuilder.fromUri("http://maps.google.com/maps/api/geocode/json");
 		uriBuilder.queryParam("sensor", false);
 		uriBuilder.queryParam("address", address);
+		uriBuilder.queryParam("key", apiKey);
 		URI uri = uriBuilder.build();
 		return new URL(uri.toString());
 	}

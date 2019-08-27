@@ -12,6 +12,7 @@ import javax.ws.rs.core.Response.Status;
 import org.opentripplanner.api.parameter.BoundingBox;
 import org.opentripplanner.geocoder.Geocoder;
 import org.opentripplanner.geocoder.GeocoderResults;
+import org.opentripplanner.geocoder.mobilibus.MobilibusGeocoder;
 
 import com.vividsolutions.jts.geom.Envelope;
 
@@ -23,13 +24,19 @@ public class ExternalGeocoderResource {
   
 // uncommenting injectparam will require a specific Geocoder to be instantiated
 //    @InjectParam 
-    public Geocoder geocoder;
-    
+    public static Geocoder geocoder;
+
+    public ExternalGeocoderResource() {
+        if (geocoder == null) {
+            geocoder = new MobilibusGeocoder();
+        }
+    }
+
     @GET
     @Produces({MediaType.APPLICATION_JSON + "; charset=UTF-8"})
     public GeocoderResults geocode(
             @QueryParam("address") String address,
-            @QueryParam("bbox") BoundingBox bbox) {
+            @QueryParam("bbox") BoundingBox bbox) {    	
         if (address == null) {
             badRequest ("no address");
         }

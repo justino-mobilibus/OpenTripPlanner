@@ -37,7 +37,7 @@ public class GeocoderServerTest {
         final double lng = -43.237;
         final String description = "121 elm street";
         
-        geocoderServer.geocoder = new Geocoder() {
+        ExternalGeocoderResource.geocoder = new Geocoder() {
             @Override
             public GeocoderResults geocode(String address, Envelope bbox) {
                 GeocoderResult result = new GeocoderResult(lat, lng, description);
@@ -57,7 +57,7 @@ public class GeocoderServerTest {
     @Test
     public void testGeocodeInvalidAddress() {
         final String error = "uh oh";
-        geocoderServer.geocoder = new Geocoder() {
+        ExternalGeocoderResource.geocoder = new Geocoder() {
             @Override
             public GeocoderResults geocode(String address, Envelope bbox) {
                 return new GeocoderResults(error);
